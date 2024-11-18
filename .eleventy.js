@@ -13,6 +13,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
 
+  eleventyConfig.addFilter("stripFirstSlash", function(value) { 
+    return value.replace(/^\/(.*)/, '$1');
+  });
+
   eleventyConfig.addShortcode("image", async function (src, alt, sizes = "100vh", className) {
 		let metadata = await Image(src, {
 			formats: ["jpeg", "jpg"],
