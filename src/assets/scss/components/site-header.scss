@@ -22,7 +22,7 @@
   box-shadow: var(--shadow);
 
   @media (min-width: 1024px) {
-    max-width: var(--site-width);
+    max-width: calc(var(--site-width) - 20px);
     margin: 3px auto 0;
   }
 
