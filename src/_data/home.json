@@ -1,6 +1,6 @@
 {
-  "title": "Fernfolio",
-  "image": "src/assets/img/fern-in-hand.jpeg",
-  "image_alt": "Fern in hand",
-  "body": "The super simple portfolio template built with [Eleventy](https://www.11ty.dev/) and [Netlify CMS](https://www.netlifycms.org/)."
+  "title": "Chris Wahlfeldt",
+  "image": "/src/assets/img/mommanpoppa.jpg",
+  "image_alt": "Lovely wife and son",
+  "body": "Software developer with over 10 years experience. Love working on all kinds of projects. Other than ole worky - I love spending time with my family, writing music with my band and making games."
 }
