@@ -1,6 +1,8 @@
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const imageShortcode = require('./src/_11ty/shortcodes/image-shortcode');
+// const imageShortcode = require('./src/_11ty/shortcodes/image-shortcode');
+const Image = require("@11ty/eleventy-img");
+const {eleventyImageTransformPlugin} = require("@11ty/eleventy-img");
 const markdownLibrary = require('./src/_11ty/libraries/markdown-library');
 const minifyHtml = require('./src/_11ty/utils/minify-html');
 const markdownFilter = require('./src/_11ty/filters/markdown-filter');
@@ -12,6 +14,42 @@ module.exports = function (eleventyConfig) {
   // Plugins
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
+  // eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+  //   // which file extensions to process
+  //   extensions: "html,md,njk",
+  //   // Add any other Image utility options here:
+
+  //   // optional, output image formats
+  //   formats: ["webp", "jpeg", "jpg", "png"],
+  //   // formats: ["auto"],
+
+  //   // optional, output image widths
+  //   // widths: ["auto"],
+
+  //   // optional, attributes assigned on <img> override these values.
+  //   defaultAttributes: {
+  //     loading: "lazy",
+  //     decoding: "async",
+  //   },
+  // });
+
+  eleventyConfig.addShortcode("image", async function (src, alt, sizes = "100vh") {
+		let metadata = await Image(src, {
+			formats: ["jpeg", "jpg"],
+      urlPath: "/assets/img/",
+      outputDir: "_site/assets/img/",
+		});
+
+		let imageAttributes = {
+			alt,
+			sizes,
+			loading: "lazy",
+			decoding: "async",
+		};
+
+		// You bet we throw an error on a missing alt (alt="" works okay)
+		return Image.generateHTML(metadata, imageAttributes);
+	});
 
   // Filters
   eleventyConfig.addFilter('markdown', markdownFilter);
@@ -20,7 +58,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('svg', svgFilter);
 
   // Shortcodes
-  eleventyConfig.addNunjucksAsyncShortcode('image', imageShortcode);
+  // eleventyConfig.addNunjucksAsyncShortcode('image', imageShortcode);
 
   // Libraries
   eleventyConfig.setLibrary('md', markdownLibrary);
@@ -32,7 +70,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('./src/assets/scss/');
 
   // Minify HTML output
-  // eleventyConfig.addTransform('htmlmin', minifyHtml);
+  eleventyConfig.addTransform('htmlmin', minifyHtml);
 
   // Don't process folders with static assets
   eleventyConfig.addPassthroughCopy('./src/favicon.ico');

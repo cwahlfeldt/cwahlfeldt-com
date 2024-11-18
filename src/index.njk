@@ -14,7 +14,14 @@ section: home
       {% endif %}
     </div>
     <div class="hero__col">
-      <img class="hero__image shadow" src="{{ home.image }}" alt="image">
+      {# <img class="hero__image shadow" src="{{ home.image }}" alt="image"> #}
+        {% image
+          "." + home.image,
+          home.image_alt,
+          "(min-width: 1024px) 50vw, 100vw",
+          "hero__image shadow",
+          "eager"
+        %}
     </div>
   </div>
 

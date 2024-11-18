@@ -48,7 +48,7 @@
     node-fetch "^2.6.7"
     p-queue "^6.6.2"
 
-"@11ty/eleventy-img@5.0.0":
+"@11ty/eleventy-img@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@11ty/eleventy-img/-/eleventy-img-5.0.0.tgz#7a514b7b4282845a1c6f9e3265b185f8e6db8450"
   integrity sha512-hJ4X5ZIRSOCooL0uXegj+nZi1abWNj22BR4PzF6e9iJg9DGYGxPrC0rg0Hy+7xzP7mzTYiOpDjZVv/NgrHNx6w==
