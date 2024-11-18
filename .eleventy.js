@@ -32,7 +32,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('./src/assets/scss/');
 
   // Minify HTML output
-  eleventyConfig.addTransform('htmlmin', minifyHtml);
+  // eleventyConfig.addTransform('htmlmin', minifyHtml);
 
   // Don't process folders with static assets
   eleventyConfig.addPassthroughCopy('./src/favicon.ico');
